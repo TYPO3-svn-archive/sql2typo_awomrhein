@@ -11,8 +11,8 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Import Ufas to Job Market',
-	'description' => 'Import data from the Ufas tables to job market.',
+	'title' => 'SQL import to TYPO3 for AWO Mittelrhein',
+	'description' => 'SQL import to TYPO3 for AWO Mittelrhein',
 	'category' => 'be',
 	'author' => 'Dirk Wildt (Die Netzmacher)',
 	'author_email' => 'http://wildt.at.die-netzmacher.de',
@@ -29,10 +29,10 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
 	'author_company' => '',
-	'version' => '0.0.0',
+	'version' => '0.0.1',
 	'constraints' => array(
 		'depends' => array(
-			'sql2typo' => '0.0.0-',
+			'sql2typo' => '',
 		),
 		'conflicts' => array(
 		),
@@ -41,7 +41,6 @@ $EM_CONF[$_EXTKEY] = array(
 	),
 	'suggests' => array(
 	),
-	'_md5_values_when_last_written' => 'a:9:{s:9:"ChangeLog";s:4:"c48f";s:12:"ext_icon.gif";s:4:"fb36";s:17:"ext_localconf.php";s:4:"7ecc";s:14:"ext_tables.php";s:4:"df9d";s:14:"ext_tables.sql";s:4:"d41d";s:25:"ext_tables_static+adt.sql";s:4:"ab01";s:16:"locallang_db.xml";s:4:"38e3";s:20:"static/constants.txt";s:4:"d41d";s:16:"static/setup.txt";s:4:"1a06";}',
 );
 
 ?>
