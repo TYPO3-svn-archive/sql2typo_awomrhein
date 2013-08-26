@@ -11,7 +11,7 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'SQL import to TYPO3 for AWO Mittelrhein',
+	'title' => 'SQL to TYPO3 AWO Mittelrhein',
 	'description' => 'SQL import to TYPO3 for AWO Mittelrhein',
 	'category' => 'be',
 	'author' => 'Dirk Wildt (Die Netzmacher)',
