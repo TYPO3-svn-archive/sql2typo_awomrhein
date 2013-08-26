@@ -8,7 +8,7 @@ if (!defined ('TYPO3_MODE'))
   // 
   // Enables the Include Static Template
 
-t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Ufas to Job Market');
+t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'AWO Mittelrhein');
   // Enables the Include Static Template
 
 
