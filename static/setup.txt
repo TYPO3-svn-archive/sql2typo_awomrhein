@@ -1,0 +1,357 @@
+plugin.tx_sql2typo_pi1 {
+  tables {
+    lis_branche {
+      source {
+        iso2utf = 1
+        sql {
+          andWhere = TEXT
+          andWhere {
+            value = `BRC_Sprache` LIKE "de"
+          }
+        }
+      }
+      destination {
+        table = tx_jobmarket_sector
+        fields {
+          pid {
+            stdWrap = TEXT
+            stdWrap {
+              value = 125
+            }
+          }
+          tstamp {
+            stdWrap = TEXT
+            stdWrap {
+              data = date:U
+            }
+          }
+          crdate {
+            stdWrap = TEXT
+            stdWrap {
+              data = date:U
+            }
+          }
+          cruser_id {
+            stdWrap = TEXT
+            stdWrap {
+              value = 1
+            }
+          }
+        }
+        sql {
+          beforeImport = TRUNCATE `tx_jobmarket_sector`
+        }
+      }
+      fields {
+        BRC_Id {
+          destination = thirdparty_id
+          stdWrap = TEXT
+          stdWrap {
+            trim = 1
+          }
+        }
+        BRC_Text {
+          destination = title
+        }
+      } 
+    }
+    lis_branchengruppe {
+      source {
+        iso2utf = 1
+        sql {
+          andWhere = TEXT
+          andWhere {
+            value = `BRG_Sprache` LIKE "de"
+          }
+        }
+      }
+      destination {
+        table = tx_jobmarket_sectorgroup
+        fields {
+          pid {
+            stdWrap = TEXT
+            stdWrap {
+              value = 125
+            }
+          }
+          tstamp {
+            stdWrap = TEXT
+            stdWrap {
+              data = date:U
+            }
+          }
+          crdate {
+            stdWrap = TEXT
+            stdWrap {
+              data = date:U
+            }
+          }
+          cruser_id {
+            stdWrap = TEXT
+            stdWrap {
+              value = 1
+            }
+          }
+        }
+        sql {
+          beforeImport = TRUNCATE `tx_jobmarket_sectorgroup`
+        }
+      }
+      fields {
+        BRG_Id {
+          destination = thirdparty_id
+          stdWrap = TEXT
+          stdWrap {
+            trim = 1
+          }
+        }
+        BRG_Text {
+          destination = title
+        }
+      } 
+    }
+    lis_kreis {
+      source {
+        iso2utf = 1
+      }
+      destination {
+        table = tx_jobmarket_county
+        fields {
+          pid {
+            stdWrap = TEXT
+            stdWrap {
+              value = 125
+            }
+          }
+          tstamp {
+            stdWrap = TEXT
+            stdWrap {
+              data = date:U
+            }
+          }
+          crdate {
+            stdWrap = TEXT
+            stdWrap {
+              data = date:U
+            }
+          }
+          cruser_id {
+            stdWrap = TEXT
+            stdWrap {
+              value = 1
+            }
+          }
+        }
+        sql {
+          beforeImport = TRUNCATE `tx_jobmarket_county`
+        }
+      }
+      fields {
+        KRS_Id {
+          destination = thirdparty_id
+          stdWrap = TEXT
+          stdWrap {
+            trim = 1
+          }
+        }
+        KRS_Name {
+          destination = title
+        }
+      } 
+    }
+    lis_region {
+      source {
+        iso2utf = 1
+      }
+      destination {
+        table = tx_jobmarket_region
+        fields {
+          pid {
+            stdWrap = TEXT
+            stdWrap {
+              value = 125
+            }
+          }
+          tstamp {
+            stdWrap = TEXT
+            stdWrap {
+              data = date:U
+            }
+          }
+          crdate {
+            stdWrap = TEXT
+            stdWrap {
+              data = date:U
+            }
+          }
+          cruser_id {
+            stdWrap = TEXT
+            stdWrap {
+              value = 1
+            }
+          }
+        }
+        sql {
+          beforeImport = TRUNCATE `tx_jobmarket_region`
+        }
+      }
+      fields {
+        RGN_Id {
+          destination = thirdparty_id
+          stdWrap = TEXT
+          stdWrap {
+            trim = 1
+          }
+        }
+        RGN_Name {
+          destination = title
+        }
+      } 
+    }
+    ufas_angebot {
+      source {
+        iso2utf = 1
+      }
+      destination {
+        table = tx_jobmarket_main
+        fields {
+          pid {
+            stdWrap = TEXT
+            stdWrap {
+              value = 125
+            }
+          }
+          tstamp {
+            stdWrap = TEXT
+            stdWrap {
+              data = date:U
+            }
+          }
+          cruser_id {
+            stdWrap = TEXT
+            stdWrap {
+              value = 1
+            }
+          }
+        }
+        sql {
+          beforeImport = TRUNCATE `tx_jobmarket_main`
+        }
+      }
+      fields {
+        id {
+          destination = thirdparty_id
+          stdWrap = TEXT
+          stdWrap {
+            trim = 1
+          }
+        }
+        datum {
+          destination = crdate
+          sql2typo {
+            strtotime = 1
+          }
+        }
+        titel {
+          destination = title
+          stdWrap = TEXT
+          stdWrap {
+            trim = 1
+          }
+        }
+        kennziffer {
+          destination = reference_number
+        }
+        art {
+          destination = type
+          relation {
+            table = tx_jobmarket_type
+            field = title
+          }
+        }
+        fe_users_uid {
+          destination = fe_user
+        }
+        anforderung {
+          destination = specification
+          stdWrap = TEXT
+          stdWrap {
+            trim = 1
+          }
+          sql2typo {
+            str_replace = 1
+            str_replace {
+              devider = |
+              0 = }\r\n{|</li><li>
+              1 = } \r\n{|</li><li>
+              2 = }\r\n {|</li><li>
+              3 = {|<ul><li>
+              4 = }|</li></ul>
+            }
+          }
+        }
+        beschreibung {
+          destination = description
+          stdWrap = TEXT
+          stdWrap {
+            trim = 1
+          }
+          sql2typo {
+            str_replace = 1
+            str_replace {
+              devider = |
+              0 = }\r\n{|</li><li>
+              1 = } \r\n{|</li><li>
+              2 = }\r\n {|</li><li>
+              3 = {|<ul><li>
+              4 = }|</li></ul>
+            }
+          }
+        }
+        stellenanzahl {
+          destination = quantity
+        }
+        region {
+          destination = region
+          relation {
+            table = tx_jobmarket_region
+            field = thirdparty_id
+          }
+        }
+        landkreis_id {
+          destination = county
+          relation {
+            table = tx_jobmarket_county
+            field = thirdparty_id
+          }
+        }
+        ort {
+          destination = location
+        }
+        branche_id {
+          destination = sector
+          relation {
+            table = tx_jobmarket_sector
+            field = thirdparty_id
+          }
+        }
+        branche_gruppe {
+          destination = sectorgroup
+          relation {
+            table = tx_jobmarket_sectorgroup
+            field = thirdparty_id
+          }
+        }
+        arbeitgeber {
+          destination = ufas_contractor
+        }
+        arbeitgeber_url {
+          destination = ufas_contractorurl
+        }
+        ufas_intern {
+          destination = note
+        }
+      }
+    }
+  }
+}
